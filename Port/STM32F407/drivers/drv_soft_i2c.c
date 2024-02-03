@@ -152,7 +152,7 @@ void ecp_stm32_soft_i2c_write(
     {
         ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, buf[i]);
         if (GPIO_PIN_SET == ecp_stm32_soft_i2c_base_wait_ack(sda_pin_index, scl_pin_index)) break;
-        *awn++;
+        *awn = *awn + 1;
     }
     ecp_stm32_soft_i2c_base_stop(sda_pin_index, scl_pin_index);
 }
@@ -184,7 +184,7 @@ void ecp_stm32_soft_i2c_read(
     for (i = 0; i < wrn; i++)
     {
         buf[i] = ecp_stm32_soft_i2c_base_read_byte(sda_pin_index, scl_pin_index, (i==(wrn-1))?0:1);
-        *arn++;
+        *arn = *arn + 1;
     }
     ecp_stm32_soft_i2c_base_stop(sda_pin_index, scl_pin_index);
 }

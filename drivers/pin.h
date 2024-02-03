@@ -1,6 +1,8 @@
 #ifndef __PIN_H__
 #define __PIN_H__
 
+struct pin;
+
 #include "./../ecp.h"
 
 #define PIN_LOW                 0x00
