@@ -1,7 +1,5 @@
 #include "drv_pin.h"
 
-#include "./../../../drivers/pin.h"
-
 /*==================================================================
     pin
 ==================================================================*/
@@ -226,7 +224,7 @@ static const struct pin_index* get_pin(int index)
     return target;
 }
 
-void ecp_pin_init(int index, uint32_t mode)
+void ecp_stm32_pin_init(int index, uint32_t mode)
 {
     const struct pin_index *target;
     GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -260,16 +258,20 @@ void ecp_pin_init(int index, uint32_t mode)
 #endif  /* defined(GPIOC) */
 #endif  /* defined(GPIOB) */
 #endif  /* defined(GPIOA) */
-    if (mode == PIN_MODE_OUTPUT) GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    else if (mode == PIN_MODE_INPUT) GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    if (mode == GPIO_MODE_OUTPUT_PP) {
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+	}
+    else if (mode == GPIO_MODE_INPUT) {
+		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	}
     else return;
     GPIO_InitStruct.Pin = target->pin;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(target->gpio, &GPIO_InitStruct);
 }
 
-void ecp_pin_write(int index, int value)
+void ecp_stm32_pin_write(int index, int value)
 {
     const struct pin_index *target;
 
@@ -282,7 +284,7 @@ void ecp_pin_write(int index, int value)
     HAL_GPIO_WritePin(target->gpio, target->pin, (GPIO_PinState)value);
 }
 
-int ecp_pin_read(int index)
+int ecp_stm32_pin_read(int index)
 {
     const struct pin_index *target;
 
@@ -292,5 +294,5 @@ int ecp_pin_read(int index)
         return -1;
     }
 
-    return (HAL_GPIO_ReadPin(target->gpio, target->pin)==GPIO_PIN_SET)?(PIN_HIGH):(PIN_LOW);
+    return (int)HAL_GPIO_ReadPin(target->gpio, target->pin);
 }

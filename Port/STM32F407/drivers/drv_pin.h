@@ -24,8 +24,8 @@ struct pin_index
     uint32_t pin;
 };
 
-void ecp_pin_init(int index, uint32_t mode);
-void ecp_pin_write(int index, int value);
-int ecp_pin_read(int index);
+void ecp_stm32_pin_init(int index, uint32_t mode);
+void ecp_stm32_pin_write(int index, int value);
+int ecp_stm32_pin_read(int index);
 
 #endif  // !__DRV_PIN_H__
