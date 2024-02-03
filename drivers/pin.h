@@ -17,7 +17,7 @@ struct pin
 {
     int index;
 
-    void (*init)(struct pin* dev, uint32_t mode);
+    void (*init)(struct pin* dev, int index, uint32_t mode);
     void (*write)(struct pin* dev, int value);
     int (*read)(struct pin* dev);
 };

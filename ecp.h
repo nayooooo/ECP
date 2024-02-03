@@ -14,5 +14,6 @@
 #endif  // ECP_USE_STM32F407
 
 #include "./drivers/pin.h"
+#include "./drivers/soft_i2c.h"
 
 #endif // !__ECP_H__
