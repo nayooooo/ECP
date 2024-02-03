@@ -1,5 +1,5 @@
-#ifndef __ECP_CONF_H__
-#define __ECP_CONF_H__
+#ifndef __ECP_H__
+#define __ECP_H__
 
 #include <stdint.h>
 
@@ -10,7 +10,9 @@
 #define ECP_USE_STM32F407           (1)
 
 #if ECP_USE_STM32F407
-#include "./Port/STM32F407/ecp_port_stm32f407_hal.h"
+    #include "./port/STM32F407/ecp_port_stm32f407_hal.h"
 #endif  // ECP_USE_STM32F407
 
-#endif // !__ECP_CONF_H__
+#include "./drivers/pin.h"
+
+#endif // !__ECP_H__

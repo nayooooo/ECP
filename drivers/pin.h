@@ -1,7 +1,7 @@
 #ifndef __PIN_H__
 #define __PIN_H__
 
-#include "./../ecp_conf.h"
+#include "./../ecp.h"
 
 #define PIN_LOW                 0x00
 #define PIN_HIGH                0x01

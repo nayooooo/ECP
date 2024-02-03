@@ -1,6 +1,6 @@
-#include "ecp_port_stm32f407_hal.h"
+#include "drv_pin.h"
 
-#include "./../../Pin/pin.h"
+#include "./../../../drivers/pin.h"
 
 /*==================================================================
     pin

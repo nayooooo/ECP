@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.lua": "lua",
+        "ecp_port_stm32f407_hal.h": "c",
+        "drv_pin.h": "c"
+    }
+}
