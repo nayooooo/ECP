@@ -15,7 +15,7 @@
         -1, 0, 0 \
     }
 
-#define GET_PIN(GPIOx, pin) ((int)((#GPIOx)[0] - 'A') * 16 + pin)
+#define STM32_GET_PIN(GPIOx, pin) ((int)((#GPIOx)[0] - 'A') * 16 + pin)
 
 struct pin_index
 {

@@ -9,6 +9,10 @@
 #define PIN_MODE_OUTPUT         0x00
 #define PIN_MODE_INPUT          0x01
 
+#if ECP_USE_STM32F407
+#define GET_PIN(GPIOx, pin) STM32_GET_PIN(GPIOx, pin)
+#endif  // ECP_USE_STM32F407
+
 struct pin
 {
     int index;
