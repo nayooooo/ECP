@@ -138,7 +138,7 @@ void ecp_stm32_soft_i2c_write(
     if (wwn > buf_len) return;
 
     ecp_stm32_soft_i2c_base_start(sda_pin_index, scl_pin_index);
-    ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, slave_addr|0x00);
+    ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, (slave_addr<<1)|0x00);
     ecp_stm32_soft_i2c_base_wait_ack(sda_pin_index, scl_pin_index);
     if (mem_addr_length > 1)
     {
@@ -168,7 +168,7 @@ void ecp_stm32_soft_i2c_read(
     if (slave_addr_length > 1) return;
 
     ecp_stm32_soft_i2c_base_start(sda_pin_index, scl_pin_index);
-    ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, slave_addr|0x00);
+    ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, (slave_addr<<1)|0x00);
     ecp_stm32_soft_i2c_base_wait_ack(sda_pin_index, scl_pin_index);
     if (mem_addr_length > 1)
     {
@@ -178,7 +178,7 @@ void ecp_stm32_soft_i2c_read(
     ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, reg_addr&0xFF);
     ecp_stm32_soft_i2c_base_wait_ack(sda_pin_index, scl_pin_index);
     ecp_stm32_soft_i2c_base_start(sda_pin_index, scl_pin_index);
-    ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, slave_addr|0x01);
+    ecp_stm32_soft_i2c_base_write_byte(sda_pin_index, scl_pin_index, (slave_addr<<1)|0x01);
     ecp_stm32_soft_i2c_base_wait_ack(sda_pin_index, scl_pin_index);
     *arn = 0;
     for (i = 0; i < wrn; i++)
